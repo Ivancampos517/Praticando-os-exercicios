@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Forex Desk</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="desk">
+    <header class="desk-header">
+      <h1 class="desk-title">Forex Desk</h1>
+      <div class="desk-clock" id="local-clock" aria-live="polite"></div>
+    </header>
+
+    <section class="board" aria-label="Trading sessions">
+      <h2 class="board-label">Sessions</h2>
+      <div class="flip-row" id="session-tiles"></div>
+      <p class="overlap-note" id="overlap-note"></p>
+    </section>
+
+    <section class="strip" aria-label="Stock exchanges">
+      <h2 class="strip-label">Exchanges</h2>
+      <div class="strip-row" id="exchange-strip"></div>
+    </section>
+
+    <main class="panels">
+      <section class="panel" aria-label="Watchlist">
+        <h2 class="panel-title">Watchlist</h2>
+        <div class="ledger" id="watchlist-body"></div>
+        <form class="add-asset" id="add-asset-form">
+          <input
+            type="text"
+            id="add-asset-input"
+            placeholder="Add asset e.g. USD/CHF"
+            maxlength="12"
+            autocomplete="off"
+          />
+          <button type="submit">Add</button>
+        </form>
+        <p class="panel-note" id="add-asset-note"></p>
+        <p class="panel-note" id="watchlist-note"></p>
+      </section>
+
+      <section class="panel" aria-label="Today's economic calendar">
+        <h2 class="panel-title">Today's Calendar</h2>
+        <div class="manifest" id="calendar-body"></div>
+        <p class="panel-note" id="calendar-note"></p>
+      </section>
+    </main>
+  </div>
+
+  <script type="module" src="src/app.js"></script>
+</body>
+</html>
