@@ -3,6 +3,6 @@
 export const CONFIG = {
   // https://twelvedata.com/pricing -> free plan -> API key
   twelveDataApiKey: 'YOUR_TWELVE_DATA_KEY',
-  // https://site.financialmodelingprep.com/developer/docs/pricing -> free plan -> API key
-  fmpApiKey: 'YOUR_FMP_KEY',
+  // https://www.jblanked.com/news/api/docs/calendar/ -> sign up -> profile -> API key
+  jblankedApiKey: 'YOUR_JBLANKED_KEY',
 };
