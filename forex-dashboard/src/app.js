@@ -147,13 +147,13 @@ async function renderCalendar() {
   const body = document.getElementById('calendar-body');
   const note = document.getElementById('calendar-note');
 
-  if (!CONFIG.fmpApiKey || CONFIG.fmpApiKey.startsWith('YOUR_')) {
-    note.textContent = 'Add your Financial Modeling Prep API key to config.js to see today’s calendar.';
+  if (!CONFIG.jblankedApiKey || CONFIG.jblankedApiKey.startsWith('YOUR_')) {
+    note.textContent = 'Add your JBlanked API key to config.js to see today’s calendar.';
     return;
   }
 
   try {
-    const events = await fetchTodayEvents(CONFIG.fmpApiKey);
+    const events = await fetchTodayEvents(CONFIG.jblankedApiKey);
     if (!events.length) {
       body.innerHTML = '';
       note.textContent = 'No scheduled events found for today.';
