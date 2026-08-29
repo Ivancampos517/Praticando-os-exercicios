@@ -1,6 +1,6 @@
 # Forex Desk
 
-A browser-only dashboard: live forex/DXY session hours, a 5-asset watchlist (plus DXY, always pinned), and today's economic calendar.
+A local dashboard: live forex/DXY session hours, a 5-asset watchlist (plus DXY, always pinned), and today's economic calendar.
 
 ## Setup
 
@@ -11,19 +11,16 @@ A browser-only dashboard: live forex/DXY session hours, a 5-asset watchlist (plu
    ```
    cp config.example.js config.js
    ```
-3. Serve the folder with any static server (opening `index.html` directly via `file://` will block the `fetch()` calls in most browsers). For example:
+3. Run the bundled server (needs only Node.js — no `npm install`):
    ```
-   npx serve .
+   node server.js
    ```
-   or
-   ```
-   python -m http.server 8080
-   ```
-4. Open the served URL in your browser.
+   This does two things: serves the static files (opening `index.html` directly via `file://` blocks the `fetch()` calls in most browsers), and proxies `/api/calendar` to JBlanked. The proxy exists because JBlanked's API doesn't send CORS headers, so a browser calling it directly from `localhost` gets blocked — see the comment at the top of `server.js`.
+4. Open http://localhost:3000 in your browser.
 
 ## Notes
 
-- Your API keys are visible in browser network requests since there's no backend. Fine for personal local use — don't deploy this publicly as-is.
+- Your API keys are visible in browser network requests since there's no real backend logic (`server.js` is just a static file server plus a one-endpoint CORS relay). Fine for personal local use — don't deploy this publicly as-is.
 - DXY is always tracked in addition to your 5 chosen assets. If your Twelve Data plan doesn't carry the DXY symbol, that tile will show "unavailable" without affecting the rest of the app.
 - JBlanked's free plan is currently rate-limited to 1 request/day (high-traffic notice on their docs). The app caches each day's calendar in `localStorage` so reloading the page doesn't burn the quota — it only re-fetches once the date rolls over.
 - Add/remove assets in the Watchlist panel; your 5 picks are saved in the browser (`localStorage`), so they persist between visits on the same device/browser.
