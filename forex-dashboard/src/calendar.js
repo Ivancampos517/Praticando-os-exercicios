@@ -34,7 +34,9 @@ export async function fetchTodayEvents(apiKey) {
   const cached = readCache(today);
   if (cached) return cached;
 
-  const url = 'https://www.jblanked.com/news/api/mql5/calendar/today/';
+  // Routed through our own tiny proxy (server.js) so the browser's CORS
+  // policy doesn't block the request — see server.js for why.
+  const url = '/api/calendar';
   const res = await fetch(url, {
     headers: {
       'Content-Type': 'application/json',
